@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 const { animals } = require('./data/animals');
+//Express.js middleware that instructs the server to make certain files readily available
+//important to serve all front end as well as JSON data
+app.use(express.static('public'));
 
 function filterByQuery(query, animalsArray) {
     let personalityTraitsArray = [];
@@ -100,6 +103,20 @@ app.get('/api/animals/:id', (req, res) => {
     } else {
       res.sendStatus(404);
     }
+});
+
+//get html (index.html) to display when running the server
+//also add middleware above to display all other files called static()
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+//serve the animals html page
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+//serve the zookeepers html page
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
 });
 
 
