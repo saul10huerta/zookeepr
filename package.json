@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/saul10huerta/zookeepr#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "jest": "^26.0.1"
